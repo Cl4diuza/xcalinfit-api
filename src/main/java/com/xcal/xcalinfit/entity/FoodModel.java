@@ -20,5 +20,10 @@ public class FoodModel {
 	private String name;
 	@NotNull(message = "content can not be null")
 	private String content;
+	private int calories;
+	private int protein;
+	private int carb;
+	private int fat;
+	private String imagePath;
 
 }

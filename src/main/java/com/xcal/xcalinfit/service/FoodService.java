@@ -29,4 +29,8 @@ public class FoodService {
 	public FoodModel getByName(String name) {
 		return repo.findByName(name);
 	}
+
+	public void del(String id) {
+		repo.deleteById(id);
+	}
 }

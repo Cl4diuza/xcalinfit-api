@@ -3,6 +3,7 @@ package com.xcal.xcalinfit.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,6 +39,12 @@ class FoodController {
 	@PostMapping("create")
 	public String create(@RequestBody FoodModel food) {
 		service.create(food);
+		return "ok";
+	}
+
+	@DeleteMapping("delete/{id}")
+	public String del(@PathVariable("id") String id) {
+		service.del(id);
 		return "ok";
 	}
 }
