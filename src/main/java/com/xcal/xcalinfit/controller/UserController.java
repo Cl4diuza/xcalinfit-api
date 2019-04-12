@@ -1,7 +1,5 @@
 package com.xcal.xcalinfit.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,34 +9,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.xcal.xcalinfit.entity.FoodModel;
-import com.xcal.xcalinfit.service.FoodService;
+import com.xcal.xcalinfit.entity.UserModel;
+import com.xcal.xcalinfit.service.UserService;
 
 @RestController
-@RequestMapping("food")
-class FoodController {
+@RequestMapping("user")
+class UserController {
 
 	@Autowired
-	private FoodService service;
+	private UserService service;
 
 	@GetMapping("test")
 	public String test() {
-		return "food service is up";
+		return "user service is up";
 	}
 
-	@GetMapping("all")
-	public List<FoodModel> getAll() {
-		return service.getAll();
-	}
-
-	@GetMapping("get/{name}")
-	public List<FoodModel> getFoodByName(@PathVariable("name") String name) {
-		return service.getByName(name);
+	@GetMapping("get/{email}")
+	public UserModel getUserByEmail(@PathVariable("email") String email) {
+		return service.getByEmail(email);
 	}
 
 	@PostMapping("create")
-	public String create(@RequestBody FoodModel food) {
-		service.create(food);
+	public String createUser(@RequestBody UserModel user) {
+		service.create(user);
 		return "ok";
 	}
 

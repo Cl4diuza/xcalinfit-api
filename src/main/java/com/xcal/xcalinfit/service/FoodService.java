@@ -26,7 +26,7 @@ public class FoodService {
 		return repo.findAll();
 	}
 
-	public FoodModel getByName(String name) {
+	public List<FoodModel> getByName(String name) {
 		return repo.findByName(name);
 	}
 
