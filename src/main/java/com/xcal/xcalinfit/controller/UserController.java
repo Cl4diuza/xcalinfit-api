@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xcal.xcalinfit.entity.UserModel;
+import com.xcal.xcalinfit.service.TokenService;
 import com.xcal.xcalinfit.service.UserService;
 
 @RestController
@@ -17,7 +18,9 @@ import com.xcal.xcalinfit.service.UserService;
 class UserController {
 
 	@Autowired
-	private UserService service;
+	private UserService userService;
+	@Autowired
+	private TokenService tokenService;
 
 	@GetMapping("test")
 	public String test() {
@@ -26,18 +29,19 @@ class UserController {
 
 	@GetMapping("get/{email}")
 	public UserModel getUserByEmail(@PathVariable("email") String email) {
-		return service.getByEmail(email);
+		return userService.getByEmail(email);
 	}
 
 	@PostMapping("create")
 	public String createUser(@RequestBody UserModel user) {
-		service.create(user);
-		return "ok";
+		userService.create(user);
+		String userId = user.getId();
+		return tokenService.createToken(userId);
 	}
 
 	@DeleteMapping("delete/{id}")
 	public String del(@PathVariable("id") String id) {
-		service.del(id);
+		userService.del(id);
 		return "ok";
 	}
 }
